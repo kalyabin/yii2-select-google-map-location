@@ -47,3 +47,5 @@ $form->field($model, 'attribute')->widget(\app\widgets\SelectMapLocationWidget::
 ...
 \yii\widgets\ActiveForm::end();
 ```
+
+TODO: integrate it's to composer
