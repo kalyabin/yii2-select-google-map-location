@@ -13,7 +13,7 @@ Change classes namespace:
 * GoogleMapAssets
 
 Change in SelectMapLocationAssets path to JavaScript:
-```
+```php
 class SelectMapLocationAssets extends AssetBundle
 {
     public $sourcePath = '@app/_assets';
@@ -24,7 +24,7 @@ class SelectMapLocationAssets extends AssetBundle
 
 Declare model class:
 
-```
+```php
 class SearchLocation extends \yii\base\Model
 {
     ...
@@ -36,7 +36,7 @@ class SearchLocation extends \yii\base\Model
 ```
 
 Render widget:
-```
+```php
 $model = new SearchLocation();
 $form = \yii\widgets\ActiveForm::begin();
 ...
