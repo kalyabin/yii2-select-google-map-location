@@ -1,5 +1,5 @@
 <?php
-namespace app\assets;
+namespace kalyabin\maplocation;
 
 use yii\web\AssetBundle;
 

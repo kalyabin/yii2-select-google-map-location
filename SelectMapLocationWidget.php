@@ -1,5 +1,5 @@
 <?php
-namespace app\widgets;
+namespace kalyabin\maplocation;
 
 use app\assets\SelectMapLocationAssets;
 use Yii;
