@@ -5,24 +5,16 @@ This extension adds functionality to select the location on the Google map. The 
 
 When choosing a location map of switches and sets the marker to the selected location. The attributes recorded address and coordinates of the selected location.
 
-## Manual usage
+## Install
 
-Change classes namespace:
-* SelectMapLocationWidget
-* SelectMapLocationAssets
-* GoogleMapAssets
-
-Change in SelectMapLocationAssets path to JavaScript:
-```php
-class SelectMapLocationAssets extends AssetBundle
-{
-    public $sourcePath = '@app/_assets';
-    public $baseUrl = '@web/assets';
-    ...
-}
+Run at your console:
+```bash
+php composer.phar require "kalyabin/yii2-select-google-map-location" "dev-master"
 ```
 
-Declare model class:
+## Usage
+
+Declare model class which will save geographic coordinates:
 
 ```php
 class SearchLocation extends \yii\base\Model
@@ -40,12 +32,10 @@ Render widget:
 $model = new SearchLocation();
 $form = \yii\widgets\ActiveForm::begin();
 ...
-$form->field($model, 'attribute')->widget(\app\widgets\SelectMapLocationWidget::className(), [
+$form->field($model, 'address')->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
     'attributeLatitude' => 'latitude',
     'attributeLongitude' => 'longitude',
 ]);
 ...
 \yii\widgets\ActiveForm::end();
 ```
-
-TODO: integrate it's to composer
