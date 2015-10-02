@@ -1,7 +1,6 @@
 <?php
 namespace kalyabin\maplocation;
 
-use app\assets\SelectMapLocationAssets;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -38,7 +37,7 @@ use yii\widgets\InputWidget;
  * @property string $attributeLongitude attribute to write location longitude
  * @property callable|null $renderWidgetMap custom function to render map
  */
-class SelectMapLocation extends InputWidget
+class SelectMapLocationWidget extends InputWidget
 {
     /**
      * @var string latitude attribute name

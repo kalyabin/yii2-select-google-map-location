@@ -1,6 +1,4 @@
 /**
- * @todo: translate it to english
- *
  * Выбор местоположения - виджет.
  * Виджет запоминает координаты при вводе адреса в инпут и отображает карту Google.
  * Необходимо передавать опции:
@@ -10,7 +8,6 @@
  * - hideMarker - если определено, то не будет установлен маркер на карте при поиске локации;
  * - onLoadMap - если определена функциия, то она будет вызвана при инициализации карты;
  * - addressNotFound - сообщение о не найденном адресе.
- * - center - точка, центр карты изначально [lat, lng]
  */
 (function($) {
     $.fn.selectLocation = function(options) {
@@ -19,7 +16,7 @@
 
         $(document).ready(function() {
             var mapOptions = {
-                center: new google.maps.LatLng(options.center[0], options.center[1]),
+                center: new google.maps.LatLng(55.997778, 37.190278),
                 zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: true
@@ -47,7 +44,7 @@
                     // не нужно устанавливать маркер
                     return;
                 }
-                marker = marker = new google.maps.Marker({
+                marker = new google.maps.Marker({
                     'position'          : latLng,
                     'map'               : map
                 });
