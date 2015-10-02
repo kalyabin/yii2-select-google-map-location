@@ -3,7 +3,7 @@
     "description": "Yii2 widget to select location at map and choose map coordinates",
     "type": "package",
     "version": "dev-master",
-    "reference": "91a5b94f1c10f773c0113551bce76c7f",
+    "reference": "d92af00bd05ab62436e445bbc23ef3be",
     "keywords": [
         "yii2", "framework", "widgets", "location", "map"
     ],
