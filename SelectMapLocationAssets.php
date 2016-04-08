@@ -12,10 +12,10 @@ use yii\web\AssetBundle;
  */
 class SelectMapLocationAssets extends AssetBundle
 {
-    public $sourcePath = '@vendor/kalyabin/yii2-select-google-map-location';
+    public $sourcePath = '@vendor/kalyabin/yii2-select-google-map-location/js';
     public $css = [];
     public $js = [
-        'js/select-google-map-location.js',
+        'select-google-map-location.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
