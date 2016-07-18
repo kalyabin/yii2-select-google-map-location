@@ -21,7 +21,7 @@ class SearchLocation extends \yii\base\Model
 {
     ...
     public $address;
-    public $location;
+    public $longitude;
     public $latitude;
     ...
 }
