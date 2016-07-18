@@ -16,7 +16,7 @@ php composer.phar require "kalyabin/yii2-select-google-map-location" "dev-master
 
 First, register your Google API key as described: [Google API Documentation](https://developers.google.com/maps/documentation/javascript/get-api-key)
 
-After this, enable at Google console: https://console.developers.google.com/:
+After this, enable at [Google console](https://console.developers.google.com/):
 
 * Google Map JavaScript API (remember API key)
 * Google Places API Web Service
