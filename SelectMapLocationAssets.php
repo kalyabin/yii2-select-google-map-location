@@ -19,6 +19,15 @@ class SelectMapLocationAssets extends AssetBundle
     ];
     public $depends = [
         'yii\web\YiiAsset',
-        'kalyabin\maplocation\GoogleMapAssets',
     ];
+
+    /**
+     * @inheritdoc
+     */
+    public static function register($view, $key)
+    {
+        /* @var $view \yii\web\View */
+        $view->registerJsFile('https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true&key=' . $key);
+        return parent::register($view);
+    }
 }
