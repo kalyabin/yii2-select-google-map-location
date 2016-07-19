@@ -8,11 +8,10 @@
  * - hideMarker - если определено, то не будет установлен маркер на карте при поиске локации;
  * - onLoadMap - если определена функциия, то она будет вызвана при инициализации карты;
  * - addressNotFound - сообщение о не найденном адресе.
- */
-
-/**
+ *
  * @param {Object}  options
  * @param {boolean} options.draggable Marker draggable Option
+ * TODO: describe other options here
  */
 (function($) {
     $.fn.selectLocation = function(options) {
@@ -67,7 +66,7 @@
                     this.setMap(null);
                 };
 
-                marker.getPosition = function(pos) {
+                marker.changePosition = function(pos) {
                     var geocoder = new google.maps.Geocoder();
                     geocoder.geocode(
                         {
@@ -75,7 +74,7 @@
                         },
                         function(results, status) {
                             if (status == google.maps.GeocoderStatus.OK) {
-                                console.log(results[0]);
+                                setLatLngAttributes(results[0].geometry.location);
                             }
 
                             return false;
