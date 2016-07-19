@@ -56,7 +56,6 @@
 
                 if(options.draggable) {
                     google.maps.event.addListener(marker, 'dragend', function() {
-                        console.log(marker.getPosition());
                         marker.changePosition(marker.getPosition());
                     });
                 }
