@@ -2,6 +2,7 @@
 namespace kalyabin\maplocation;
 
 use Yii;
+use yii\base\Model;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -31,7 +32,7 @@ use yii\widgets\InputWidget;
  * @package yii2-select-google-map-location
  * @copyright (c) 2015, Max Kalyabin, http://github.com/kalyabin
  *
- * @property yii\base\Model $model base yii2 model or ActiveRecord object
+ * @property Model $model base yii2 model or ActiveRecord object
  * @property string $attribute attribute to write map location
  * @property string $attributeLatitude attribute to write location latitude
  * @property string $attributeLongitude attribute to write location longitude
@@ -48,6 +49,11 @@ class SelectMapLocationWidget extends InputWidget
      * @var string longitude attribute name
      */
     public $attributeLongitude;
+
+    /**
+     * @var boolean marker draggable option
+     */
+    public $draggable = false;
 
     /**
      * @var array options for map wrapper div
@@ -101,6 +107,7 @@ class SelectMapLocationWidget extends InputWidget
             'address'           => '#' . $address,
             'latitude'          => '#' . $latitude,
             'longitude'         => '#' . $longitude,
+            'draggable'         => $this->draggable,
         ]);
         // message about not founded addess
         if (!isset($jsOptions['addressNotFound'])) {

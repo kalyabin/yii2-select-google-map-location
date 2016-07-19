@@ -8,6 +8,10 @@
  * - hideMarker - если определено, то не будет установлен маркер на карте при поиске локации;
  * - onLoadMap - если определена функциия, то она будет вызвана при инициализации карты;
  * - addressNotFound - сообщение о не найденном адресе.
+ *
+ * @param {Object}  options
+ * @param {boolean} options.draggable Marker draggable Option
+ * TODO: describe other options here
  */
 (function($) {
     $.fn.selectLocation = function(options) {
@@ -46,12 +50,36 @@
                 }
                 marker = new google.maps.Marker({
                     'position'          : latLng,
-                    'map'               : map
+                    'map'               : map,
+                    'draggable'         : options.draggable
                 });
+
+                if(options.draggable) {
+                    google.maps.event.addListener(marker, 'dragend', function() {
+                        marker.changePosition(marker.getPosition());
+                    });
+                }
+
                 marker.remove = function() {
                     google.maps.event.clearInstanceListeners(this);
                     this.setMap(null);
                 };
+
+                marker.changePosition = function(pos) {
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode(
+                        {
+                            latLng: pos
+                        },
+                        function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                setLatLngAttributes(results[0].geometry.location);
+                            }
+
+                            return false;
+                        }
+                    );
+                }
             };
 
             /**
