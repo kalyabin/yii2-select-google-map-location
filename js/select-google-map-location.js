@@ -51,12 +51,37 @@
                 }
                 marker = new google.maps.Marker({
                     'position'          : latLng,
-                    'map'               : map
+                    'map'               : map,
+                    'draggable'         : options.draggable
                 });
+
+                if(options.draggable) {
+                    google.maps.event.addListener(marker, 'dragend', function() {
+                        console.log(marker.getPosition());
+                        marker.changePosition(marker.getPosition());
+                    });
+                }
+
                 marker.remove = function() {
                     google.maps.event.clearInstanceListeners(this);
                     this.setMap(null);
                 };
+
+                marker.getPosition = function(pos) {
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode(
+                        {
+                            latLng: pos
+                        },
+                        function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                console.log(results[0]);
+                            }
+
+                            return false;
+                        }
+                    );
+                }
             };
 
             /**

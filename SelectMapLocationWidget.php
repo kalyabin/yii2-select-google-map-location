@@ -51,6 +51,11 @@ class SelectMapLocationWidget extends InputWidget
     public $attributeLongitude;
 
     /**
+     * @var boolean marker draggable option
+     */
+    public $draggable = false;
+
+    /**
      * @var array options for map wrapper div
      */
     public $wrapperOptions;
@@ -102,6 +107,7 @@ class SelectMapLocationWidget extends InputWidget
             'address'           => '#' . $address,
             'latitude'          => '#' . $latitude,
             'longitude'         => '#' . $longitude,
+            'draggable'         => $this->draggable,
         ]);
         // message about not founded addess
         if (!isset($jsOptions['addressNotFound'])) {
