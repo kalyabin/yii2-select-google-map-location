@@ -71,6 +71,11 @@ class SelectMapLocationWidget extends InputWidget
     public $renderWidgetMap;
 
     /**
+     * @var string Google API Key for Google Maps
+     */
+    public $googleMapApiKey;
+
+    /**
      * Run widget
      */
     public function run()
@@ -86,7 +91,7 @@ class SelectMapLocationWidget extends InputWidget
         if (!isset($this->wrapperOptions['style'])) {
             $this->wrapperOptions['style'] = 'width: 100%; height: 500px;';
         }
-        SelectMapLocationAssets::register($this->view);
+        SelectMapLocationAssets::register($this->view, $this->googleMapApiKey);
 
         // getting inputs ids
         $address = Html::getInputId($this->model, $this->attribute);
