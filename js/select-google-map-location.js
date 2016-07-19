@@ -9,6 +9,11 @@
  * - onLoadMap - если определена функциия, то она будет вызвана при инициализации карты;
  * - addressNotFound - сообщение о не найденном адресе.
  */
+
+/**
+ * @param {Object}  options
+ * @param {boolean} options.draggable Marker draggable Option
+ */
 (function($) {
     $.fn.selectLocation = function(options) {
         var self = this;
