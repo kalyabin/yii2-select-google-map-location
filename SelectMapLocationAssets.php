@@ -22,12 +22,19 @@ class SelectMapLocationAssets extends AssetBundle
     ];
 
     /**
+     * Google API Key
+     *
+     * @var string
+     */
+    public static $googleMapApiKey;
+
+    /**
      * @inheritdoc
      */
-    public static function register($view, $key)
+    public static function register($view)
     {
         /* @var $view \yii\web\View */
-        $view->registerJsFile('https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true&key=' . $key);
+        $view->registerJsFile('https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true&key=' . self::$googleMapApiKey);
         return parent::register($view);
     }
 }
