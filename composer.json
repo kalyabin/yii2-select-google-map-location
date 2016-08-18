@@ -5,6 +5,7 @@
     "keywords": [
         "yii2", "framework", "widgets", "location", "map", "input widget"
     ],
+    "version": "1.0.0",
     "require": {
         "php": ">=5.4.0",
         "yiisoft/yii2": "2.*"
