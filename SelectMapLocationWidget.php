@@ -112,7 +112,8 @@ class SelectMapLocationWidget extends InputWidget
         ]);
         // message about not founded addess
         if (!isset($jsOptions['addressNotFound'])) {
-            $jsOptions['addressNotFound'] = Yii::t('main', 'Address not found');
+            $hasMainCategory = isset(Yii::$app->i18n->translations['*']) || isset(Yii::$app->i18n->translations['main']);
+            $jsOptions['addressNotFound'] = $hasMainCategory ? Yii::t('main', 'Address not found') : 'Address not found';
         }
         $this->view->registerJs(new JsExpression('
             $(document).ready(function() {
