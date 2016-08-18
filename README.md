@@ -5,6 +5,12 @@ This extension adds functionality to select the location on the Google map. The 
 
 When choosing a location map of switches and sets the marker to the selected location. The attributes recorded address and coordinates of the selected location.
 
+[![Latest Stable Version](https://poser.pugx.org/kalyabin/yii2-select-google-map-location/v/stable)](https://packagist.org/packages/kalyabin/yii2-select-google-map-location)
+[![Total Downloads](https://poser.pugx.org/kalyabin/yii2-select-google-map-location/downloads)](https://packagist.org/packages/kalyabin/yii2-select-google-map-location)
+[![Monthly Downloads](https://poser.pugx.org/kalyabin/yii2-select-google-map-location/d/monthly)](https://packagist.org/packages/kalyabin/yii2-select-google-map-location)
+[![Latest Unstable Version](https://poser.pugx.org/kalyabin/yii2-select-google-map-location/v/unstable)](https://packagist.org/packages/kalyabin/yii2-select-google-map-location)
+[![License](https://poser.pugx.org/kalyabin/yii2-select-google-map-location/license)](https://packagist.org/packages/kalyabin/yii2-select-google-map-location)
+
 ## Install
 
 Run at your console:
