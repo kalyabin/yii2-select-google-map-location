@@ -2,10 +2,8 @@
     "name": "kalyabin/yii2-select-google-map-location",
     "description": "Yii2 widget to select location at map and choose map coordinates",
     "type": "package",
-    "version": "dev-master",
-    "reference": "17da8d5132db9768e415736808c1081f",
     "keywords": [
-        "yii2", "framework", "widgets", "location", "map"
+        "yii2", "framework", "widgets", "location", "map", "input widget"
     ],
     "require": {
         "php": ">=5.4.0",
