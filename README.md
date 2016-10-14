@@ -15,7 +15,7 @@ When choosing a location map of switches and sets the marker to the selected loc
 
 Run at your console:
 ```bash
-php composer.phar require "kalyabin/yii2-select-google-map-location" "dev-master"
+php composer.phar require "kalyabin/yii2-select-google-map-location" "*"
 ```
 
 ## Register Google API
