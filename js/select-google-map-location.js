@@ -1,17 +1,17 @@
 /**
- * Выбор местоположения - виджет.
- * Виджет запоминает координаты при вводе адреса в инпут и отображает карту Google.
- * Необходимо передавать опции:
- * - address - селектор, для указания адреса;
- * - latitude - селектор для указания широты;
- * - longitude - селектор для указания долготы;
- * - hideMarker - если определено, то не будет установлен маркер на карте при поиске локации;
- * - onLoadMap - если определена функциия, то она будет вызвана при инициализации карты;
- * - addressNotFound - сообщение о не найденном адресе.
+ * Select map location widget.
+ * The widget writes the coordinates to hidden inputs when enter address into text input or move marker on the map.
+ *
+ * @see https://developers.google.com/maps/documentation/javascript/tutorial
  *
  * @param {Object}  options
  * @param {boolean} options.draggable Marker draggable Option
- * TODO: describe other options here
+ * @param {String|jQuery|HTMLInputElement} options.address Address input selector
+ * @param {String|jQuery|HTMLInputElement} options.latitude Latitude input selector
+ * @param {String|jQuery|HTMLInputElement} options.latitude Longitude input selector
+ * @param {Boolean} options.hideMarker Hide\show marker to selected location
+ * @param {Function|undefined} options.onLoadMap Callback function to render map
+ * @param {String|undefined} options.addressNotFound Description for not found address error
  */
 (function($) {
     $.fn.selectLocation = function(options) {
@@ -31,21 +31,23 @@
                 options.onLoadMap(map);
             }
 
-            // маркер найденной точки
+            // marker for founded point
             var marker = null;
 
             /**
-             * Создать маркер на карте
-             * Передается объект типа google.maps.LatLng
+             * Create marker into map
+             *
+             * Input object type - google.maps.LatLng
+             *
              * @param {Object} latLng
              */
             var createMarker = function(latLng) {
-                // удалить маркер если уже был
+                // remove older marker
                 if (marker) {
                     marker.remove();
                 }
                 if (options.hideMarker) {
-                    // не нужно устанавливать маркер
+                    // do not use marker
                     return;
                 }
                 marker = new google.maps.Marker({
@@ -72,19 +74,24 @@
                             latLng: pos
                         },
                         function(results, status) {
-                            if (status == google.maps.GeocoderStatus.OK) {
-                                setLatLngAttributes(results[0].geometry.location);
+                            if (status === google.maps.GeocoderStatus.OK) {
+                                if (results[0].formatted_address) {
+                                    // revert geocode
+                                    $(options.address).val(results[0].formatted_address);
+                                }
+                                selectLocation(results[0]);
                             }
 
                             return false;
                         }
                     );
-                }
+                };
             };
 
             /**
-             * Установить координаты точки
-             * @param {Object} point объект типа google.maps.LatLng
+             * Touch point coordinates
+             *
+             * @param {Object} point google.maps.LatLng
              */
             var setLatLngAttributes = function(point) {
                 $(options.latitude).val(point.lat());
@@ -92,7 +99,8 @@
             };
 
             /**
-             * Выбрать местоположение, на входе объект у которго есть geometry
+             * Select location with geometry
+             *
              * @param {Object} item
              */
             var selectLocation = function(item) {
@@ -119,20 +127,19 @@
                 }
             };
 
-            // валидация адреса, если не найдены координаты
-            // испльзуется событие из ActiveForm
+            // address validation using yii.activeForm.js
             if ($(options.address).parents('form').length) {
                 var $form = $(options.address).parents('form');
                 $form.on('afterValidateAttribute', function(e, attribute, messages) {
-                    if (attribute.input == options.address && !$(options.latitude).val() && !$(options.longitude).val() && !messages.length) {
-                        // не найдены координаты
+                    if (attribute.input === options.address && !$(options.latitude).val() && !$(options.longitude).val() && !messages.length) {
+                        // address not found
                         messages.push(options.addressNotFound);
                         e.preventDefault();
                     }
                 });
             }
 
-            // автокомплит для поиска местонахождения
+            // address autocomplete using google autocomplete
             var autocomplete = new google.maps.places.Autocomplete($(options.address).get(0));
 
             google.maps.event.addListener(autocomplete, 'place_changed', function() {
