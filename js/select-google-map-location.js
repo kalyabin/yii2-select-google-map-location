@@ -34,6 +34,39 @@
             // marker for founded point
             var marker = null;
 
+            // create marker when map clicked
+            if (options.draggable) {
+                google.maps.event.addListener(map, 'click', function(e) {
+                    geocodePosition(e.latLng);
+                    createMarker(e.latLng);
+                });
+            }
+
+            /**
+             * Geocode position by selected latitude and longitude
+             *
+             * @param {Object} latLng google.maps.LatLng
+             */
+            var geocodePosition = function(latLng) {
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode(
+                    {
+                        latLng: latLng
+                    },
+                    function(results, status) {
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            if (results[0].formatted_address) {
+                                // revert geocode
+                                $(options.address).val(results[0].formatted_address);
+                            }
+                            selectLocation(results[0]);
+                        }
+
+                        return false;
+                    }
+                );
+            };
+
             /**
              * Create marker into map
              *
@@ -56,7 +89,7 @@
                     'draggable'         : options.draggable
                 });
 
-                if(options.draggable) {
+                if (options.draggable) {
                     google.maps.event.addListener(marker, 'dragend', function() {
                         marker.changePosition(marker.getPosition());
                     });
@@ -67,25 +100,7 @@
                     this.setMap(null);
                 };
 
-                marker.changePosition = function(pos) {
-                    var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode(
-                        {
-                            latLng: pos
-                        },
-                        function(results, status) {
-                            if (status === google.maps.GeocoderStatus.OK) {
-                                if (results[0].formatted_address) {
-                                    // revert geocode
-                                    $(options.address).val(results[0].formatted_address);
-                                }
-                                selectLocation(results[0]);
-                            }
-
-                            return false;
-                        }
-                    );
-                };
+                marker.changePosition = geocodePosition;
             };
 
             /**
