@@ -55,3 +55,18 @@ $form->field($model, 'address')->widget(\kalyabin\maplocation\SelectMapLocationW
 ...
 \yii\widgets\ActiveForm::end();
 ```
+
+To use movable marker on the map describe draggable option:
+```php
+$model = new SearchLocation();
+$form = \yii\widgets\ActiveForm::begin();
+...
+$form->field($model, 'address')->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
+    'attributeLatitude' => 'latitude',
+    'attributeLongitude' => 'longitude',
+    'googleMapApiKey' => '<YOUR_REGISTERED_GOOGLE_MAP_API>',
+    'draggable' => true,
+]);
+...
+\yii\widgets\ActiveForm::end();
+```
