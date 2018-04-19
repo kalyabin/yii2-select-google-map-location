@@ -70,3 +70,19 @@ $form->field($model, 'address')->widget(\kalyabin\maplocation\SelectMapLocationW
 ...
 \yii\widgets\ActiveForm::end();
 ```
+
+To use custom field template use placeholder {map} for ActiveField:
+```php
+$model = new SearchLocation();
+$form = \yii\widgets\ActiveForm::begin();
+...
+$form->field($model, 'address', [
+    'template' => '{label}<div class="custom-class"><div class="form-control">{input}</div>{map}</div>{error}',
+])->widget(\kalyabin\maplocation\SelectMapLocationWidget::className(), [
+    'attributeLatitude' => 'latitude',
+    'attributeLongitude' => 'longitude',
+    'googleMapApiKey' => '<YOUR_REGISTERED_GOOGLE_MAP_API>',
+]);
+...
+\yii\widgets\ActiveForm::end();
+```
