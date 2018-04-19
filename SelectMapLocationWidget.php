@@ -128,6 +128,13 @@ class SelectMapLocationWidget extends InputWidget
             return call_user_func_array($this->renderWidgetMap, [$mapHtml]);
         }
 
-        return Html::activeInput('text', $this->model, $this->attribute, $this->textOptions) . $mapHtml;
+        // replace custom template to use map after input=text
+        if (strpos($this->field->template, '{map}') === false) {
+            $this->field->template = preg_replace('/\{input\}/', '{input}{map}', $this->field->template);
+        }
+
+        $this->field->parts['{map}'] = $mapHtml;
+
+        return Html::activeInput('text', $this->model, $this->attribute, $this->textOptions);
     }
 }
