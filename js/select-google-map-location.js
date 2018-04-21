@@ -6,6 +6,8 @@
  *
  * @param {Object}  options
  * @param {boolean} options.draggable Marker draggable Option
+ * @param {Number} options.defaultLatitude Default latitude
+ * @param {Number} options.defaultLongitude Default longitude
  * @param {String|jQuery|HTMLInputElement} options.address Address input selector
  * @param {String|jQuery|HTMLInputElement} options.latitude Latitude input selector
  * @param {String|jQuery|HTMLInputElement} options.latitude Longitude input selector
@@ -20,7 +22,7 @@
 
         $(document).ready(function() {
             var mapOptions = {
-                center: new google.maps.LatLng(55.997778, 37.190278),
+                center: new google.maps.LatLng(options.defaultLatitude || 55.997778, options.defaultLongitude || 37.190278),
                 zoom: 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: true
