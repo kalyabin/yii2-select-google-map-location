@@ -12,6 +12,7 @@ use yii\widgets\InputWidget;
 /**
  * Widget for select map location. It\'s render google map and input field for type a map location.
  * Latitude and longitude are provided in the attributes $attributeLatitude and $attributeLongitude.
+ * Add variables to define center map position as default
  * Base usage:
  *
  * $form->field($model, 'location')->widget(\app\widgets\SelectMapLocationWidget::className(), [
