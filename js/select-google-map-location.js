@@ -60,6 +60,7 @@
                             if (results[0].formatted_address) {
                                 // revert geocode
                                 $(options.address).val(results[0].formatted_address);
+                                $(options.address).trigger('change');
                             }
                             selectLocation(results[0]);
                         }
