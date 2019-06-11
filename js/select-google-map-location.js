@@ -23,7 +23,7 @@
         $(document).ready(function() {
             var mapOptions = {
                 center: new google.maps.LatLng(options.defaultLatitude || 55.997778, options.defaultLongitude || 37.190278),
-                zoom: 12,
+                zoom: options.defaultZoom || 12,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: true
             };
